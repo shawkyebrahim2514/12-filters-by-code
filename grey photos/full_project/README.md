@@ -1,7 +1,7 @@
 # Project full version
 
 ### How to run the program
-> Enter the filter name that you want to apply filters on
+> Enter your grey image that you want to apply filters on (must be in the file format (bmp) with 256*256 pixels)
 
 ```
   Please select a filter to apply or 0 to exit: (your photo name)
