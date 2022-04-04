@@ -6,9 +6,9 @@
 #include <vector>
 #include "bmplib.cpp"
 using namespace std;
-string order;
+string shuffle_order;
 unsigned char image[SIZE][SIZE];
-unsigned char newimage[SIZE][SIZE];
+unsigned char image2[SIZE][SIZE];
 // we will take the original intervals from image, the first is the first_start, the second is the first_end, the third is the second_start, the fourth is the second_end
 vector<vector<int>>intervals{{0,0,0,0},{0,SIZE/2,0,SIZE/2},{0,SIZE/2,SIZE/2,SIZE},{SIZE/2,SIZE,0,SIZE/2},{SIZE/2,SIZE,SIZE/2,SIZE}};
 int change_h,change_v;
@@ -37,22 +37,21 @@ void loadImage () {
 //------------------------------------------------
 void take_choice(){
     bool check = true;
-    cout << "New order of quarters ?";
-    order = "";
-    while (order.empty()){
-        getline(cin , order);
+    cout << "New shuffle_order of quarters ?";
+    shuffle_order = "";
+    while (shuffle_order.empty()){
+        getline(cin , shuffle_order);
     }
-    order.erase(remove(order.begin(),order.end(),' '),order.end());
+    shuffle_order.erase(remove(shuffle_order.begin(),shuffle_order.end(),' '),shuffle_order.end());
     for (int i = 0; i < 4; ++i) {
-        if(order[i] < '1' || order[i] > '4'){
+        if(shuffle_order[i] < '1' || shuffle_order[i] > '4'){
             check = false;
         }
     }
-    if(order.size() != 4 || !check) {
+    if(shuffle_order.size() != 4 || !check) {
         cout << "Please enter correct choice.\n";
         take_choice();
     }
-    cout << "YES";
 }
 //------------------------------------------------
 void saveImage () {
@@ -64,7 +63,7 @@ void saveImage () {
 
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
-    writeGSBMP(imageFileName, newimage);
+    writeGSBMP(imageFileName, image2);
 }
 //------------------------------------------------
 
@@ -81,7 +80,7 @@ void shuffle_image() {
             row = SIZE / 2;
         }
         // target is the quarter that we want to draw
-        int target = order[i] - '0';
+        int target = shuffle_order[i] - '0';
         // loop over each row of the target quarter
         for (int j = intervals[target][0]; j < intervals[target][1]; ++j) {
             // return the initial column number
@@ -95,7 +94,7 @@ void shuffle_image() {
             }
             // loop over each column of the target quarter
             for (int k = intervals[target][2]; k < intervals[target][3]; ++k) {
-                newimage[row][column] = image[j][k];
+                image2[row][column] = image[j][k];
                 column ++;
             }
             row ++;

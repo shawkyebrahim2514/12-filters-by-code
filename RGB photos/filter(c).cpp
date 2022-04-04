@@ -2,16 +2,14 @@
 #include <fstream>
 #include <cstring>
 #include <cmath>
+#include <vector>
 #include "bmplib.cpp"
 using namespace std;
-
-unsigned char image[SIZE][SIZE];
-unsigned char newimage[SIZE][SIZE];
-int change_h,change_v;
+vector<pair<int,int>>all_dir{{1,1},{-1,-1},{1,-1},{-1,1},{0,1},{0,-1},{1,0},{-1,0}};
+unsigned char image[SIZE][SIZE][RGB];
 void loadImage ();
 void saveImage ();
-void flip_image ();
-void take_choice();
+void blur();
 bool check_state();
 void start();
 int main()
@@ -22,50 +20,43 @@ int main()
 void loadImage () {
     char imageFileName[100];
 
-    // Get gray scale image file name
+    // Get RGB scale image file name
     cout << "Enter the source image file name: ";
     cin >> imageFileName;
 
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
-    readGSBMP(imageFileName, image);
-}
-//------------------------------------------------
-void take_choice(){
-    char choice;
-    cout << "Flip (h)orizontally or (v)ertically ? ";
-    cin >> choice;
-    if(choice != 'h' && choice != 'v'){
-        cout << "Please enter correct chocie.\n";
-        take_choice();
-        return;
-    }
-    if(choice == 'h'){
-        change_h = SIZE - 1;
-        change_v = 0;
-    }else{
-        change_v = SIZE - 1;
-        change_h = 0;
-    }
+    readRGBBMP(imageFileName, image);
 }
 //------------------------------------------------
 void saveImage () {
     char imageFileName[100];
 
-    // Get gray scale image target file name
+    // Get RGB scale image target file name
     cout << "Enter the target image file name: ";
     cin >> imageFileName;
 
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
-    writeGSBMP(imageFileName, newimage);
+    writeRGBBMP(imageFileName, image);
 }
 //------------------------------------------------
 
-void flip_image() {
+void blur() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
-            newimage[abs(change_v-i)][abs(change_h-j)] = image[i][j];
+            for (int k = 0; k < RGB; ++k) {
+                int cnt = 1,avrge = image[i][j][k];
+                for(auto val : all_dir){
+                    int row = i + val.first, column = j + val.second;
+                    if(row < 0 || row >= SIZE || column <0 || column >= SIZE){
+                        continue;
+                    }
+                    cnt ++;
+                    avrge += image[row][column][k];
+                }
+                image[i][j][k] = avrge/cnt;
+            }
         }
     }
 }
@@ -86,8 +77,9 @@ bool check_state(){
 
 void start(){
     loadImage();
-    take_choice();
-    flip_image();
+    for(int i = 1; i <= 3; i++){
+        blur();
+    }
     saveImage();
     if(check_state()){
         start();

@@ -6,7 +6,7 @@
 using namespace std;
 
 unsigned char image[SIZE][SIZE];
-unsigned char newimage[SIZE][SIZE];
+unsigned char image2[SIZE][SIZE];
 int start_first, start_second, end_first, end_second, change_h,change_v;
 void loadImage ();
 void saveImage ();

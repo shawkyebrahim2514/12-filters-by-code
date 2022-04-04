@@ -2,16 +2,14 @@
 #include <fstream>
 #include <cstring>
 #include <cmath>
-#include "bmplib.cpp"
 #include <vector>
+#include "bmplib.cpp"
 using namespace std;
-vector<vector<int>>dir{{0,1},{1,0},{-1,0},{0,-1},{1,-1},{-1,1},{1,1},{-1,-1}};
+vector<pair<int,int>>all_dir{{1,1},{-1,-1},{1,-1},{-1,1},{0,1},{0,-1},{1,0},{-1,0}};
 unsigned char image[SIZE][SIZE];
-unsigned char newimage[SIZE][SIZE];
 void loadImage ();
 void saveImage ();
-void black_and_white();
-void detect_edges();
+void blur();
 bool check_state();
 void start();
 int main()
@@ -40,52 +38,23 @@ void saveImage () {
 
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
-    writeGSBMP(imageFileName, newimage);
+    writeGSBMP(imageFileName, image);
 }
 //------------------------------------------------
 
-void black_and_white() {
-    int mid_size = 0;
+void blur() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
-            mid_size += image[i][j];
-        }
-    }
-    mid_size /= (SIZE * SIZE);
-    for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j< SIZE; j++) {
-            if(image[i][j] > mid_size) {
-                image[i][j] = 255;
-            }else{
-                image[i][j] = 0;
-            }
-        }
-    }
-}
-
-void detect_edges(){
-    int  cnt;
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            newimage[i][j] = 255;
-        }
-    }
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            cnt = 0;
-            for (int k = 0; k < 8; ++k) {
-                int row = i + dir[k][0], column = j + dir[k][1];
-                if(row < 0 || row >= SIZE || column < 0 || column >= SIZE) {
-                    cnt ++;
+            int cnt = 1,avrge = image[i][j];
+            for(auto val : all_dir){
+                int row = i + val.first, column = j + val.second;
+                if(row < 0 || row >= SIZE || column <0 || column >= SIZE){
                     continue;
                 }
-                if(image[row][column] == image[i][j]) {
-                    cnt ++;
-                }
+                cnt ++;
+                avrge += image[row][column];
             }
-            if(cnt < 6){
-                newimage[i][j] =0;
-            }
+            image[i][j] = avrge/cnt;
         }
     }
 }
@@ -106,8 +75,9 @@ bool check_state(){
 
 void start(){
     loadImage();
-    black_and_white();
-    detect_edges();
+    for(int i = 1; i <= 3; i++){
+        blur();
+    }
     saveImage();
     if(check_state()){
         start();
