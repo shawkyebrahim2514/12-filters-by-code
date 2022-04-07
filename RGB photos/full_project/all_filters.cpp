@@ -1,8 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include <cstring>
-#include <cmath>
-#include <vector>
 #include <algorithm>
 #include "bmplib.cpp"
 using namespace std;
@@ -44,7 +40,10 @@ void loadImage (string paragraph, unsigned char img_arr[SIZE][SIZE][RGB]) {
 
     // Add to it .bmp extension and load image
     strcat (imageFileName, ".bmp");
-    readRGBBMP(imageFileName, img_arr);
+    if(readRGBBMP(imageFileName, img_arr)){
+        cout << "Please enter correct image name\n";
+        loadImage(paragraph, img_arr);
+    }
 }
 //-------------------------------------------------
 void saveImage () {
@@ -134,6 +133,7 @@ void darken_lighten() {
 }
 //-------------------------------------------------
 void detect_edges(){
+    make_copy();
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
             int tmp = -4*(image[i][j][0]);
@@ -187,6 +187,13 @@ void shrink() {
 }
 //-------------------------------------------------
 void mirror_image() {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            for (int k = 0; k < RGB; ++k) {
+                image2[i][j][k] = image[i][j][k];
+            }
+        }
+    }
     for (int i = start_first; i < end_first; i++) {
         for (int j = start_second; j< end_second; j++) {
             for (int k = 0; k < RGB; ++k) {
@@ -262,7 +269,7 @@ void run_flip(){
         run_flip();
         return;
     }
-    if(choice == 'h'){
+    if(choice == 'v'){
         change_h = SIZE - 1;
         change_v = 0;
     }else{
@@ -365,17 +372,19 @@ void run_mirror(){
             change_v = 0;
             change_h = SIZE - 1;
             break;
-        case 'u':
+        case 'd':
             start_first = SIZE / 2;
             start_second = 0;
             end_first = end_second = SIZE;
             change_v = SIZE - 1;
             change_h = 0;
             break;
-        case 'd':
+        case 'u':
             start_first = start_second = 0;
             end_first = SIZE / 2;
             end_second = SIZE;
+            change_v = SIZE - 1;
+            change_h = 0;
             break;
     }
     //-----------------------------------------

@@ -1,7 +1,4 @@
 #include <iostream>
-#include <fstream>
-#include <cstring>
-#include <cmath>
 #include "all_filters.cpp"
 using namespace std;
 bool is_valid_choice(char tmp){

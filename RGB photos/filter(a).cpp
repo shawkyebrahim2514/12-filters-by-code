@@ -55,17 +55,19 @@ void take_choice(){
             change_v = 0;
             change_h = SIZE - 1;
             break;
-        case 'u':
+        case 'd':
             start_first = SIZE / 2;
             start_second = 0;
             end_first = end_second = SIZE;
             change_v = SIZE - 1;
             change_h = 0;
             break;
-        case 'd':
+        case 'u':
             start_first = start_second = 0;
             end_first = SIZE / 2;
             end_second = SIZE;
+            change_v = SIZE - 1;
+            change_h = 0;
             break;
     }
 }
