@@ -1,178 +1,34 @@
-# 12 filters by code
+## Main window
+![image](https://user-images.githubusercontent.com/101745968/169882114-adc2cbfe-0a82-415e-a242-c729dcff4ae9.png)
 
-## An image processing (or photo editing) software like Photo Shop allows you to load an image and apply some filters to image and then save it again.
+## Loading image
+![image](https://user-images.githubusercontent.com/101745968/169882254-343214db-c4e3-467c-9684-8097dbc8d004.png)
 
-> ### Original Image
-![image](https://user-images.githubusercontent.com/101745968/161277494-8f3b4ec6-9135-44d4-a2a4-c5b8ffe10b05.png)
+## Invert image
+![image](https://user-images.githubusercontent.com/101745968/169882294-aede34c7-e81d-46be-a55e-153bab2a46c1.png)
 
-> ### Filter 1: Black and White Image
-![image](https://user-images.githubusercontent.com/101745968/161271458-6f95c132-3795-4e05-838a-a328552d9c56.png)
+## Darken and Lighten
+![image](https://user-images.githubusercontent.com/101745968/169882423-3f64b259-6311-45bf-a3b7-57060a55c190.png)
 
-<details><summary>show details</summary>
-<p>
+![image](https://user-images.githubusercontent.com/101745968/169882459-1ce05f56-ea1b-4ccb-9a1d-0fd05cd11399.png)
 
-      If you apply this function to the loaded image, it will produce another version of the image that is black and white.
+## Blur
+![image](https://user-images.githubusercontent.com/101745968/169882517-7afbe991-27aa-46e3-ae31-59310e6b71f1.png)
 
-</p>
- 
-```
-You can do this by calculating the average gray level for all pixels in the  image
-And then every pixel above the average is turned to white (255)  and every pixel below average is turned to black (0).
-```
- 
-</details>
- 
-> ### Filter 2: Invert Image
-![image](https://user-images.githubusercontent.com/101745968/161272326-9c2f5aae-ca41-4e1b-bc0f-7942c2a8428e.png)
-<details><summary>show details</summary>
-<p>
+## Enlrage
+![image](https://user-images.githubusercontent.com/101745968/169882587-64c27119-2746-44cb-b8a0-0c6a25529222.png)
 
-      If you apply this function to the loaded image, it will produce the negative 
-      of the image and you can store it in the file name you give.
+![image](https://user-images.githubusercontent.com/101745968/169882605-0fc1d8fd-d5b4-44b0-b0de-6d4cb8a80c93.png)
 
-</p>
- 
- ```
-     The negative has every black pixel turned to white and every white pixel turned to black
-     and every gray pixel is turned to opposite level of brightness (255 – pixel value)
-```
- 
-</details>
+## Flip
+![image](https://user-images.githubusercontent.com/101745968/169882960-53b9aab4-41f7-4cbd-b91f-a66a6db6e98f.png)
 
-> ### Filter 1: Black and White Image
-![image](https://user-images.githubusercontent.com/101745968/161271458-6f95c132-3795-4e05-838a-a328552d9c56.png)
+![image](https://user-images.githubusercontent.com/101745968/169882664-dcfe8021-9bb6-4635-b5f6-9f15c0801915.png)
 
-<details><summary>show details</summary>
-<p>
+## Rotate
+![image](https://user-images.githubusercontent.com/101745968/169882725-0fb625d2-16de-470e-aeb7-31c70b4851a2.png)
 
-      If you apply this function to the loaded image, it will produce another version of the image that is black and white.
+![image](https://user-images.githubusercontent.com/101745968/169882741-c8495629-ac5d-4060-bcc6-82df23e89fe3.png)
 
-</p>
- 
-```
-     You can do this by calculating the average gray level for all pixels in the  image
-     And then every pixel above the average is turned to white (255)  and every pixel below average is turned to black (0).
-```
- 
-</details>
- 
-> ### Filter 3: Merge Images
-![image](https://user-images.githubusercontent.com/101745968/161274150-cc2271e5-ebed-4d92-80fe-5bb1befb9792.png)
-<details><summary>show details</summary>
-<p>
-
-      In this function, you will be asked to enter the name of another image, then the program will load this image. 
-
-</p>
- 
- ```
-      The program will create a new image, with every pixel equal the average gray level
-      of the corresponding pixels in the images to merge.
-```
- 
-</details>
-
-> ### Filter 4: Flip Image
-![image](https://user-images.githubusercontent.com/101745968/161274588-2caff2a0-c0a5-4a30-9eb6-c020ab9f6d39.png)
-<details><summary>show details</summary>
-<p>
-
-      This filter allows the user to flip the image horizontally or vertically, as if it is reflected on a mirror
-
-</p>
- 
-</details>
-
-> ### Filter 5: Rotate Image
-![image](https://user-images.githubusercontent.com/101745968/161274905-2af39359-998e-4553-9c5e-8f4b3ed93718.png)
-<details><summary>show details</summary>
-<p>
-
-      This filter allows the user to rotate the image clockwise by 90º, 180º or 270º as the user chooses.
-
-</p>
- 
-</details>
-
-> ### Filter 6: Darken and Lighten Image
-![image](https://user-images.githubusercontent.com/101745968/161275272-36859930-d2f9-412d-b97c-53d273c8248c.png)
-<details><summary>show details</summary>
-<p>
-
-      This filter allows the user to make the image darker or lighter by 50%
-
-</p>
- 
-</details>
-
-> ### Filter 7: Detect Image Edges
-![image](https://user-images.githubusercontent.com/101745968/161275768-74c228dd-5571-422b-81b3-e224a3377164.png)
-<details><summary>show details</summary>
-<p>
-
-      This function finds the edges of the drawings in the image and turns the image into a skeleton version
-      of the original as if it is drawn with pencil without coloring as shown. 
-
-</p>
- 
-</details>
-
-> ### Filter 8: Enlarge Image
-![image](https://user-images.githubusercontent.com/101745968/161275978-43e3c1d9-b597-44fe-9544-59fb3c5eaf12.png)
-<details><summary>show details</summary>
-<p>
-
-      This filter allows the user to enlarge one of the four quarters of the image into a separate new image.
-
-</p>
- 
-</details>
-
-> ### Filter 9: Shrink Image
-![image](https://user-images.githubusercontent.com/101745968/161276203-268df67e-5f51-44d8-95c3-cc0244584c60.png)
-<details><summary>show details</summary>
-<p>
-
-      This filter allows the user to shrink the image dimensions to 1/2, 1/3 or 1/4 the original dimensions.
-
-</p>
- 
-</details>
-
-> ### Filter a: Mirror Image
-![image](https://user-images.githubusercontent.com/101745968/161276367-8944adbd-5314-4afa-92cc-10b6260442bc.png)
-<details><summary>show details</summary>
-<p>
-
-      This filter mirrors 1/2 of the image as seen here in order: Left 1/2, Right 1/2, Upper 1/2 and Lower 1/2.
-
-</p>
- 
-</details>
-
-> ### Filter b: Shuffle Image
-![image](https://user-images.githubusercontent.com/101745968/161276619-dcdc7f89-4d90-4e65-ac31-ba96525c0c44.png)
-<details><summary>show details</summary>
-<p>
-
-      Assume the image consist of 4 quarters as shown
-      the user enters the order he wants to the quarters in the new image. Wrong input is rejected.
-
-</p>
- 
-```
-  Assume he entered 4 3 2 1 he gets image 1. Or if he enters 3 1 4 2 he gets image 2. User can enter any order he likes.
-```
- 
-</details>
-
-> ### Filter c: Blur Image
-![image](https://user-images.githubusercontent.com/101745968/161276803-0600dc0d-4209-448a-b3fd-96467c0ba167.png)
-<details><summary>show details</summary>
-<p>
-
-      This filter produces a bury version of the image.
-
-</p>
- 
-</details>
+## Black and White
+![image](https://user-images.githubusercontent.com/101745968/169882800-bd152dfc-00d2-4ecd-9109-d1924dfc3f90.png)
